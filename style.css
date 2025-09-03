@@ -1,8 +1,9 @@
-body {
+.container {
     display: flex;
-    /* align-items: center; */
     justify-content: center;
 }
+
+
 
 
 .grid {
@@ -11,13 +12,12 @@ body {
     align-items: center;
     justify-content: center;
     border: 2px solid black;
-    height: 80vh;
-    width: 50vw;
+    height: 90vh;
+    width: 90vw;
 }
 
 .grid div {
+    display: flex;
     border: 1px solid #ddd;
-    flex: 1 0 calc(100% / 16);
-    height: calc(100% / 16);
     box-sizing: border-box;
 }
