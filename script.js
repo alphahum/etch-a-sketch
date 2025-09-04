@@ -1,5 +1,9 @@
 const grid = document.querySelector(".grid");
-const newGrid = document.querySelector("#size");
+const newGridBtn = document.querySelector("#size");
+const resetBtn = document.querySelector("#reset");
+const randomColorBtn = document.querySelector("#random-color");
+const blackBtn = document.querySelector("#classic");
+let currentMode = "black";
 
 function createGrid(size) {
     grid.innerHTML = "";
@@ -10,6 +14,7 @@ function createGrid(size) {
 
         cell.addEventListener("mouseover", () => {
             cell.style.backgroundColor = "black"
+            cell.darkness = 0
         });
         grid.appendChild(cell);
     }
@@ -17,7 +22,13 @@ function createGrid(size) {
 
 createGrid(16)
 
-newGrid.addEventListener("click", () => {
+resetBtn.addEventListener("click", () => {
+    grid.innerHTML = "";
+    createGrid(16);
+
+})
+
+newGridBtn.addEventListener("click", () => {
     let size = prompt("Enter Grid Size (max 100x100)")
     size = parseInt(size);
     if (size > 0 && size <= 100) {
