@@ -2,8 +2,24 @@ const grid = document.querySelector(".grid");
 const newGridBtn = document.querySelector("#size");
 const resetBtn = document.querySelector("#reset");
 const randomColorBtn = document.querySelector("#random-color");
-const blackBtn = document.querySelector("#classic");
+const blackBtn = document.querySelector("#black");
 let currentMode = "black";
+
+function colorCell(cell) {
+    if (currentMode === "black") {
+        cell.style.backgroundColor = "black"
+    }
+    else if (currentMode === "random") {
+    if (!cell.baseHue) {
+        cell.baseHue = Math.floor(Math.random() * 360);
+        cell.darkness = 0;
+    }
+    const lightness = 100 - (cell.darkness * 10);
+    cell.style.backgroundColor = `hsl(${cell.baseHue}, 80%, ${lightness}%)`;
+    if (cell.darkness < 6) cell.darkness++;
+}
+
+}
 
 function createGrid(size) {
     grid.innerHTML = "";
@@ -13,14 +29,25 @@ function createGrid(size) {
         const cell = document.createElement("div");
 
         cell.addEventListener("mouseover", () => {
-            cell.style.backgroundColor = "black"
-            cell.darkness = 0
+            colorCell(cell);
         });
         grid.appendChild(cell);
     }
 }
 
+
+
 createGrid(16)
+
+randomColorBtn.addEventListener("click", () => {
+    currentMode = "random"
+    
+})
+
+blackBtn.addEventListener("click", () => {
+    currentMode = "black"
+})
+
 
 resetBtn.addEventListener("click", () => {
     grid.innerHTML = "";
