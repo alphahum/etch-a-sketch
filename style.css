@@ -12,12 +12,14 @@
     align-items: center;
     justify-content: center;
     border: 2px solid black;
-    height: 90vh;
-    width: 90vw;
+    height: 680px;
+    width: 680px;
+    --size: 16;
 }
 
 .grid div {
-    display: flex;
+    flex: 1 0 calc(100% / var(--size));
+    height: calc(100% / var(--size));
     border: 1px solid #ddd;
     box-sizing: border-box;
 }

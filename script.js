@@ -1,14 +1,12 @@
 const grid = document.querySelector(".grid");
-const newgrid = document.querySelector("#size");
+const newGrid = document.querySelector("#size");
 
 function createGrid(size) {
     grid.innerHTML = "";
+    grid.style.setProperty('--size' , size);
+
     for (let i = 0; i < size * size; i++ ) {
         const cell = document.createElement("div");
-        cell.style.flex = `1 0 calc(100% / ${size})`;
-        cell.style.height = `calc(100% / ${size})`;
-        cell.style.boxSizing = "border-box";
-        cell.style.border = "1px solid #ddd";
 
         cell.addEventListener("mouseover", () => {
             cell.style.backgroundColor = "black"
@@ -18,3 +16,13 @@ function createGrid(size) {
 }
 
 createGrid(16)
+
+newGrid.addEventListener("click", () => {
+    let size = prompt("Enter Grid Size (max 100x100)")
+    size = parseInt(size);
+    if (size > 0 && size <= 100) {
+        createGrid(size);
+    } else {
+        alert("Please enter a number between 1 and 100");
+    }
+});
