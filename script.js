@@ -7,7 +7,12 @@ let currentMode = "black";
 
 function colorCell(cell) {
     if (currentMode === "black") {
-        cell.style.backgroundColor = "black"
+        if (!cell.darkness) cell.darkness = 0;
+        const lightness = 70 - (cell.darkness * 20);
+        cell.style.backgroundColor = `hsl(0, 0%, ${lightness}%)`;
+        if (cell.darkness < 6) cell.darkness++;
+        
+
     }
     else if (currentMode === "random") {
     if (!cell.baseHue) {
